@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import random
 number = random.randint(-10000, 10000)
-trunks =abs(number) % 10
+trunks = abs(number) % 10
 isagi = 1 if number >= 0 else -1
 trunks *= isagi
 if number > 5:
