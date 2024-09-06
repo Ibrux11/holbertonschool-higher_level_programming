@@ -3,8 +3,7 @@ def add(goku, vegeta):
     """My addition function
 
     Args:
-        a
-        gok: first integer
+        goku: first integer
         vegeta: second integer
 
     Returns:
