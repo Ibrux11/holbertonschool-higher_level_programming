@@ -13,7 +13,7 @@ class Rectangle(BaseGeometry):
         """Instantiation of width and height with validation"""
 
         self.integer_validator("width", width)
-        self.integer_validator("heigt", height)
+        self.integer_validator("height", height)
 
         self.__width = width
         self.__height = height
@@ -25,3 +25,11 @@ class Rectangle(BaseGeometry):
         Uses the formula: width * height.
         """
         return self.__width * self.__height
+    
+    def __str__(self):
+        """
+        Return a string representation of the rectangle.
+
+        Format: [Rectangle] <width>/<height>.
+        """
+        return f"[Rectangle] {self.__width}/{self.__height}"
