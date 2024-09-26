@@ -1,5 +1,9 @@
 #!/usr/bin/python3
-    
+"""
+Module for checking class inheritance.
+"""
+
+  
 def is_same_class(obj, a_class):
     """
     Check if an object is exactly an instance of a specified class.
