@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+Module for checking class inheritance.
+"""
+
 
 def is_kind_of_class(obj, a_class):
     """
