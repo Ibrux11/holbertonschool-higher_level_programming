@@ -1,54 +1,32 @@
-import unittest
-from io import StringIO
-import sys
+>>> MyList = __import__('1-my_list').MyList
 
-# Supposons que MyList est défini dans un fichier appelé my_list.py
-from my_list import MyList
+>>> Mylist = (1, 2, 4, 6)
+>>> print(Mylist)
+(1, 2, 4, 6)
 
-class TestMyList(unittest.TestCase):
-    
-    def test_print_sorted(self):
-        # Capture l'impression
-        captured_output = StringIO()
-        sys.stdout = captured_output
-        
-        my_list = MyList([3, 1, 2])
-        my_list.print_sorted()
-        
-        # Rétablir stdout
-        sys.stdout = sys.__stdout__
-        
-        # Vérifier si l'affichage est correct
-        self.assertEqual(captured_output.getvalue().strip(), "[1, 2, 3]")
-    
-    def test_print_sorted_empty_list(self):
-        # Capture l'impression
-        captured_output = StringIO()
-        sys.stdout = captured_output
-        
-        my_list = MyList([])
-        my_list.print_sorted()
-        
-        # Rétablir stdout
-        sys.stdout = sys.__stdout__
-        
-        # Vérifier si l'affichage est correct
-        self.assertEqual(captured_output.getvalue().strip(), "[]")
+>>> my_list = MyList()
+>>> my_list.append(1)
+>>> my_list.append(4)
+>>> my_list.append(3)
+>>> my_list.append(5)
 
-    def test_print_sorted_with_negative_numbers(self):
-        # Capture l'impression
-        captured_output = StringIO()
-        sys.stdout = captured_output
-        
-        my_list = MyList([3, -1, 2])
-        my_list.print_sorted()
-        
-        # Rétablir stdout
-        sys.stdout = sys.__stdout__
-        
-        # Vérifier si l'affichage est correct
-        self.assertEqual(captured_output.getvalue().strip(), "[-1, 2, 3]")
+>>> MyList.append("m")
+Traceback (most recent call last):
+TypeError: descriptor 'append' for 'list' objects doesn't apply to a 'str' object
 
-if __name__ == '__main__':
-    unittest.main()
+>>> print(my_list)
+[1, 4, 3, 5]
 
+>>> my_list.print_sorted()
+[1, 3, 4, 5]
+
+>>> my_list.append(-1)
+>>> print(my_list)
+[1, 4, 3, 5, -1]
+
+>>> my_list.print_sorted()
+[-1, 1, 3, 4, 5]
+
+>>> my_list = MyList()
+>>> my_list.print_sorted()
+[]
