@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+
 def read_file(filename=""):
     """
     Lit le contenu d'un fichier et l'affiche sur la sortie standard.
