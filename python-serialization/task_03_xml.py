@@ -1,57 +1,33 @@
-#!/usr/bin/env python3
-"""
-Initialise un objet CustomObject
-avec un nom, un âge, et un statut étudiant.
-"""
+#!/usr/bin/python3
+"""Module compiled with Python3"""
+import xml.etree.ElementTree as ET
 
 
-import pickle
-"""
-Initialise un objet CustomObject
-avec un nom, un âge, et un statut étudiant.
-"""
+def serialize_to_xml(dictionary, filename):
+    """
+    Serializes a dictionary into XML and saves it to a given filename.
+    :param dictionary: a python dictionary to serialize
+    :param filename: the file in which the serialized dictionary will be saved
+    """
+    root = ET.Element("data")
+    for key, value in dictionary.items():
+        tree = ET.SubElement(root, key)
+        tree.text = str(value)
+    tree = ET.ElementTree(root)
+    tree.write(filename)
+
+def deserialize_from_xml(filename):
+    """
+    Deserializes a XML file into a python dictionary
+    :param filename: the file containing the XML data
+    """
+    tree = ET.parse(filename)
+    root = tree.getroot()
+    dictionary = {}
+    for element in root:
+        tag = element.tag
+        text = element.text
+        dictionary[tag] = text
+    return dictionary
 
 
-class CustomObject:
-    def __init__(self, name, age, is_student):
-        """
-        Initialise un objet CustomObject avec
-        un nom, un âge, et un statut étudiant.
-        Args:
-        name (str): Le nom de la personne.
-        age (int): L'âge de la personne.
-        is_student (bool): Indique si la personne est étudiante.
-        """
-        self.name = name
-        self.age = age
-        self.is_student = is_student
-
-    def display(self):
-        """Affiche les attributs de l'objet CustomObject."""
-        print("Name: {}\nAge: {}\nIs Student: {}\n"
-              .format(self.name, self.age, self.is_student))
-
-    def serialize(self, filename):
-        """
-        Sérialise l'objet courant et le sauvegarde dans un fichier.
-        Args:
-        filename (str): Le nom du fichier dans
-        lequel l'objet doit être sauvegardé.
-        """
-        with open(filename, 'wb') as fic:
-            pickle.dump(self, fic)
-
-    @classmethod
-    def deserialize(cls, filename):
-        """
-        Désérialise un objet CustomObject depuis un fichier.
-        Args:
-        filename (str): Le nom du fichier contenant l'objet sérialisé.
-        Returns:
-        CustomObject: L'objet désérialisé depuis le fichier.
-        """
-        try:
-            with open(filename, 'rb') as fic:
-                return pickle.load(fic)
-        except Exception:
-            return None
